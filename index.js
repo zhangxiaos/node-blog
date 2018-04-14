@@ -13,16 +13,16 @@ app.set('views', path.join(__dirname, 'views')); // 设置模板目录
 app.set('view engine', 'ejs'); // 设置模板引擎
 
 app.use(express.static(path.join(__dirname, 'public'))); // 设置静态文件目录
-app.use(session({
-	name: config.session.key, // 设置cookie中保存session id的字段名称
-	secret: config.session.secret, // 通过设置secret来计算hash值并存放在cookie中，使产生的signedCookie防止篡改
-	cookie: {
-		maxAge: config.session.maxAge // 设置过期时间，过期后cookie中的session id自动删除
-	},
-	store: new MongoStore({
-		url: config.mongodb // mongodb地址
-	})
-}))
+// app.use(session({
+// 	name: config.session.key, // 设置cookie中保存session id的字段名称
+// 	secret: config.session.secret, // 通过设置secret来计算hash值并存放在cookie中，使产生的signedCookie防止篡改
+// 	cookie: {
+// 		maxAge: config.session.maxAge // 设置过期时间，过期后cookie中的session id自动删除
+// 	},
+// 	store: new MongoStore({
+// 		url: config.mongodb // mongodb地址
+// 	})
+// }))
 
 app.use(flash()); // flash基于session, 因此要放到session中间件之后加载
 
@@ -36,9 +36,9 @@ app.locals.blog = {
 	description: pkg.description
 };
 app.use(function(req, res, next) {
-	res.locals.user = req.session.user;
-	res.locals.success = req.flash('success').toString();
-	res.locals.error = req.flash('error').toString();
+	// res.locals.user = req.session.user;
+	// res.locals.success = req.flash('success').toString();
+	// res.locals.error = req.flash('error').toString();
 	next();
 });
 routes(app);

@@ -4,6 +4,7 @@
   "description": "my first blog base on node",
   "main": "index.js",
   "scripts": {
+    "server": "export NODE_SERVER=true && pm2 start index.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
